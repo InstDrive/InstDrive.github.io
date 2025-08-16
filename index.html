@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DESCRIPTION META TAG">
+  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>InstDrive</title>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <style>
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      margin-bottom: 5px; /* Reduced from 10px */
+    }
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: transparent; /* Remove light background */
+    }
+    
+    /* Reduce column gaps */
+    .video-grid {
+      margin-left: -0.5rem;
+      margin-right: -0.5rem;
+    }
+    
+    .video-grid .column {
+      padding: 0.25rem;
+    }
+    
+    /* Make labels closer to videos */
+    .video-label {
+      margin-top: -10px;
+      margin-bottom: 5px; /* Reduced from 10px */
+      font-size: 0.9rem;
+    }
+    
+    /* Reduce vertical spacing between rows */
+    .video-row {
+      margin-bottom: 0 !important;
+    }
+    
+    /* Add minimal vertical space between first and second row */
+    .second-row {
+      margin-top: -10px;
+    }
+    
+    /* Updated styles for the image grid section */
+    .image-grid-section .video-container {
+      padding-top: 42%; /* Reduced aspect ratio to make images smaller */
+      margin-bottom: 12px; /* Add margin between images in rows */
+    }
+    
+    .image-grid-section img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    
+    .image-grid-section .column {
+      padding: 0.8rem 0.05rem; /* Reduced spacing between columns */
+    }
+    
+    .image-grid-section .columns.is-multiline {
+      margin-left: -3rem;
+      margin-right: -3rem;
+      margin-bottom: 15px; /* Space between row groups */
+    }
+    
+    .image-grid-section .hero-body {
+      padding: 1rem 0.5rem; /* Add padding to the section */
+    }
+  </style>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">InstDrive: Instance-Aware 3D Gaussian Splatting for Driving Scenes</h1>
+          <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                Hongyuan Liu,</span>
+                <span class="author-block">
+                  Haochen Yu,</span>
+                  <span class="author-block">
+                    Bochao Zou,
+                  </span>
+                  <span class="author-block">
+                    Jianfei Jiang,
+                  </span>
+                  <span class="author-block">
+                    Qiankun Liu,
+                  </span>
+                  <span class="author-block">
+                    Huimin Ma
+                  </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block">University of Science and Technology Beijing</span>
+                  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Paper abstract -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Reconstructing dynamic driving scenes from dashcam videos has attracted increasing attention due to its significance in autonomous driving and scene understanding. While recent advances have made impressive progress, most methods still unify all background elements into a single representation, hindering both instance-level understanding and flexible scene editing. Some approaches attempt to lift 2D segmentation into 3D space, but often rely on pre-processed instance IDs or complex pipelines to map continuous features to discrete identities. Moreover, these methods are typically designed for indoor scenes with rich viewpoints, making them less applicable to outdoor driving scenarios. In this paper, we present InstDrive, an instance-aware 3D Gaussian Splatting framework tailored for the interactive reconstruction of dynamic driving scene. We use masks generated by SAM as pseudo ground-truth to guide 2D feature learning via contrastive loss and pseudo-supervised objectives. At the 3D level, we introduce regularization to implicitly encode instance identities and enforce consistency through a voxel-based loss. A lightweight static codebook further bridges continuous features and discrete identities without requiring data pre-processing or complex optimization. Quantitative and qualitative experiments demonstrate the effectiveness of InstDrive, and to the best of our knowledge, it is the first framework to achieve 3D instance segmentation in dynamic, open-world driving scenes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+
+<!-- Method section -->
+<section class="section hero">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+        <h2 class="title is-3">Method</h2>
+    </div>
+  </div>
+
+
+  <!-- Single image display -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-three-fifths">
+          <img src="static/images/frame.png" alt="InstDrive framework overview showing the pipeline of our method"/>
+          <div class="content has-text-justified">
+            <p>
+              Framework Overview. We extend Gaussian attributes with an instance feature dimension and train the scene using multi-view images and LiDAR points. A contrastive loss and a voting-based pseudo-supervision loss guide 2D feature learning, while a voxel-based consistency loss enforces 3D coherence by aligning nearby Gaussians. Both 2D and 3D features are mapped to discrete instance IDs via a binarized static codebook.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-three-fifths">
+          <img src="static/images/fig1.png" alt="InstDrive framework overview showing the pipeline of our method"/>
+          <div class="content has-text-justified">
+            <p>
+              Existing reconstruction methods fail to achieve structured 3D reconstruction with instance-level editability in dynamic driving scenes. To address this, we propose InstDrive, which directly supervises training using SAM-processed video frames without requiring instance matching. We employ a shared 2D–3D color map to enable bijection between instance IDs and colors. During real-time rendering, trained Gaussians are assigned full opacity and colored according to their instance IDs. By capturing click events in the pixel space and retrieving the corresponding color, we map it back to the instance ID using the color map and select all Gaussians associated with that ID, enabling real-time, interactive selection and manipulation of 3D Gaussian instances.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</section>
+<!-- End Method section -->
+
+
+
+
+
+  <section class="hero is-small">
+    <div class="hero-body" style="padding-bottom: 0.5rem; margin-bottom: 0rem;">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            <h3 class="title is-4 has-text-centered mb-4">Real-time Interactive Instance Selection</h3>
+            <div class="content has-text-justified mt-4">
+              <p>
+                Our system enables real-time interactive instance selection through simple mouse clicks. Users can click on any object in the rendered view to instantly select all Gaussians belonging to that instance, enabling intuitive manipulation of individual objects in the scene. This interactive selection mechanism provides a seamless and efficient way to work with complex 3D scenes.
+              </p>
+            </div>
+            
+            <div class="video-container has-text-centered" style="max-width: 100%; height: auto;">
+              <video id="interactive-video" controls loop muted playsinline style="width: 100%; height: auto;">
+                <source src="static/videos/click2.mp4" type="video/mp4">
+              </video>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-small image-grid-section">
+    <div class="hero-body" style="padding-top: 0rem; padding-bottom: 0.5rem;">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-full">
+            
+            <h3 class="title is-4 has-text-centered mb-4">Point-level Instance Segmentation</h3>
+            <div class="content has-text-justified mt-4">
+              <p>
+                Our approach achieves instance-level reconstruction of driving scenes, producing noise-free results and demonstrating superior spatial consistency compared to baseline methods.
+              </p>
+            </div>
+
+            <div class="columns is-multiline video-grid video-row">
+              <!-- First row -->
+              <div class="column is-one-quarter">
+                <div class="video-container">
+                  <img src="static/gif/13/000_0_resized.jpg" alt="Scene 1">
+                </div>
+              </div>
+              <div class="column is-one-quarter">
+                <div class="video-container">
+                  <img src="static/gif/13/013_group.gif" alt="Group 1">
+                </div>
+              </div>
+              <div class="column is-one-quarter">
+                <div class="video-container">
+                  <img src="static/gif/13/013_open.gif" alt="Open 1">
+                </div>
+              </div>
+              <div class="column is-one-quarter">
+                <div class="video-container">
+                  <img src="static/gif/13/013_with.gif" alt="With 1">
+                </div>
+              </div>
+            </div>
+
+            <div class="columns is-multiline video-grid video-row">
+              <!-- Second row -->
+              <div class="column is-one-quarter">
+                <div class="video-container">
+                  <img src="static/gif/32/012_0_resized.jpg" alt="Scene 2">
+                </div>
+              </div>
+              <div class="column is-one-quarter">
+                <div class="video-container">
+                  <img src="static/gif/32/032_group.gif" alt="Group 2">
+                </div>
+              </div>
+              <div class="column is-one-quarter">
+                <div class="video-container">
+                  <img src="static/gif/32/032_open.gif" alt="Open 2">
+                </div>
+              </div>
+              <div class="column is-one-quarter">
+                <div class="video-container">
+                  <img src="static/gif/32/032_with.gif" alt="With 2">
+                </div>
+              </div>
+            </div>
+
+            <div class="columns is-multiline video-grid video-row">
+              <!-- Third row -->
+              <div class="column is-one-quarter">
+                <div class="video-container">
+                  <img src="static/gif/38/009_0_resized.jpg" alt="Scene 3">
+                </div>
+              </div>
+              <div class="column is-one-quarter">
+                <div class="video-container">
+                  <img src="static/gif/38/038_group.gif" alt="Group 3">
+                </div>
+              </div>
+              <div class="column is-one-quarter">
+                <div class="video-container">
+                  <img src="static/gif/38/038_open.gif" alt="Open 3">
+                </div>
+              </div>
+              <div class="column is-one-quarter">
+                <div class="video-container">
+                  <img src="static/gif/38/038_with.gif" alt="With 3">
+                </div>
+              </div>
+            </div>
+
+            <!-- Column labels -->
+            <div class="columns is-multiline video-grid">
+              <div class="column is-one-quarter has-text-centered">
+                <p class="video-label">Camera Data</p>
+              </div>
+              <div class="column is-one-quarter has-text-centered">
+                <p class="video-label">GSGroup</p>
+              </div>
+              <div class="column is-one-quarter has-text-centered">
+                <p class="video-label">OpenGS</p>
+              </div>
+              <div class="column is-one-quarter has-text-centered">
+                <p class="video-label">Ours</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-full">
+
+            <h3 class="title is-4 has-text-centered mb-4">2D Segmentation Results</h3>
+            <div class="content has-text-justified mt-4">
+              <p>
+                Our method relies solely on untracked 2D segmentation to achieve panoramic, instance-level scene reconstruction with multi-view consistency. The spatiotemporal coherence of our reconstructions markedly outperforms that of baseline approaches.
+              </p>
+            </div>
+
+            <div class="columns is-multiline video-grid video-row">
+              <!-- First row -->
+              <div class="column is-one-fifth">
+                <div class="video-container">
+                  <video autoplay loop muted playsinline>
+                    <source src="static/videos/3/raw.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="column is-one-fifth">
+                <div class="video-container">
+                  <video autoplay loop muted playsinline>
+                    <source src="static/videos/3/seg.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="column is-one-fifth">
+                <div class="video-container">
+                  <video autoplay loop muted playsinline>
+                    <source src="static/videos/3/gsgroup.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="column is-one-fifth">
+                <div class="video-container">
+                  <video autoplay loop muted playsinline>
+                    <source src="static/videos/3/opengs.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="column is-one-fifth">
+                <div class="video-container">
+                  <video autoplay loop muted playsinline>
+                    <source src="static/videos/3/instdrive.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+            
+            <div class="columns is-multiline video-grid video-row second-row">
+              <!-- Second row -->
+              <div class="column is-one-fifth">
+                <div class="video-container">
+                  <video autoplay loop muted playsinline>
+                    <source src="static/videos/27/raw.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="column is-one-fifth">
+                <div class="video-container">
+                  <video autoplay loop muted playsinline>
+                    <source src="static/videos/27/seg.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="column is-one-fifth">
+                <div class="video-container">
+                  <video autoplay loop muted playsinline>
+                    <source src="static/videos/27/gsgroup.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="column is-one-fifth">
+                <div class="video-container">
+                  <video autoplay loop muted playsinline>
+                    <source src="static/videos/27/opengs.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="column is-one-fifth">
+                <div class="video-container">
+                  <video autoplay loop muted playsinline>
+                    <source src="static/videos/27/instdrive.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+            <div class="columns is-multiline video-grid video-row second-row">
+              <!-- Third row -->
+              <div class="column is-one-fifth">
+                <div class="video-container">
+                  <video autoplay loop muted playsinline>
+                    <source src="static/videos/42/raw.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="column is-one-fifth">
+                <div class="video-container">
+                  <video autoplay loop muted playsinline>
+                    <source src="static/videos/42/seg.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="column is-one-fifth">
+                <div class="video-container">
+                  <video autoplay loop muted playsinline>
+                    <source src="static/videos/42/gsgroup.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="column is-one-fifth">
+                <div class="video-container">
+                  <video autoplay loop muted playsinline>
+                    <source src="static/videos/42/opengs.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="column is-one-fifth">
+                <div class="video-container">
+                  <video autoplay loop muted playsinline>
+                    <source src="static/videos/42/instdrive.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+
+            <!-- Column labels -->
+            <div class="columns is-multiline video-grid">
+              <div class="column is-one-fifth has-text-centered">
+                <p class="video-label">Camera Data</p>
+              </div>
+              <div class="column is-one-fifth has-text-centered">
+                <p class="video-label">Sam Segmentation</p>
+              </div>
+              <div class="column is-one-fifth has-text-centered">
+                <p class="video-label">GSGroup</p>
+              </div>
+              <div class="column is-one-fifth has-text-centered">
+                <p class="video-label">OpenGS</p>
+              </div>
+              <div class="column is-one-fifth has-text-centered">
+                <p class="video-label">Ours</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
